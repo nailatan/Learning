@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
-//const config = require("./config");
+const config = require("./config");
 
 const connect = async () => {
   try {
-    await mongoose.connect(
-      `mongodb://admin:1234@localhost:27017/Learning?authSource=admin`
-    );
+    await mongoose.connect(config.MONGO_URL);
     console.log("Mongoose connected");
   } catch (e) {
     console.error(`Could not connect to MongoDB: ${e}`);

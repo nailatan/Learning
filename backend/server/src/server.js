@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const express = require("express");
 const { errorHandler } = require("./errors");
 const db = require("./db");
+const config = require("./config");
 
 const app = express();
 app.use(morgan("tiny"));
@@ -21,12 +22,12 @@ app.use(errorHandler);
 
 const startServer = async () => {
   await db.connect();
-  app.listen(8080, () => {
-    //const mode = config.NODE_ENV.toUpperCase();
-    // console.log(
-    //   `Trips Management API Server (mode ${mode}) listening on port :${config.SERVER_PORT}`
-    // );
-    console.log("Larning API listening on port 8080");
+  app.listen(config.SERVER_PORT, () => {
+    const mode = config.NODE_ENV.toUpperCase();
+    console.log(
+      `Trips Management API Server (mode ${mode}) listening on port :${config.SERVER_PORT}`
+    );
+    console.log(`Learning API listening on port ${config.SERVER_PORT}`);
   });
 };
 

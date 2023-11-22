@@ -1,3 +1,5 @@
+const config = require("./config");
+
 class LearningApiError extends Error {
   constructor(code, message) {
     super();
@@ -32,10 +34,9 @@ const errorHandler = (err, req, res, next) => {
   // }
 
   res.status(500).send({
-    // error: config.isDevelopment
-    //?
-    error: `Internal Server Error: ${err}`,
-    // : `Internal Error`,
+    error: config.isEnvelopment
+      ? `Internal Server Error: ${err}`
+      : `Internal Error`,
   });
 };
 
