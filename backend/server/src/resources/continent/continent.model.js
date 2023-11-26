@@ -5,6 +5,7 @@ const continentSchema = new mongoose.Schema(
     name: {
       type: String,
     },
+    country: [{ name: String, capital: String }],
   },
   { timestamps: true }
 );
