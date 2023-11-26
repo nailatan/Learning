@@ -8,11 +8,12 @@ const update = async (name, country) => {
   return await Continent.findOneAndUpdate({ name }, { country }, { new: true });
 };
 
+const find = async (continent) => {
+  const continentDb = await Continent.find().exec();
+  return continentDb;
+};
+
 const findOne = async (continent) => {
-  console.log(
-    "🚀 ~ file: continent.service.js:12 ~ findOne ~ continent:",
-    continent
-  );
   const continentDb = await Continent.findOne({ name: continent }).exec();
   return continentDb;
 };
@@ -22,4 +23,4 @@ const deleteOne = async (name) => {
   return continentDb;
 };
 
-module.exports = { create, findOne, update, deleteOne };
+module.exports = { create, find, findOne, update, deleteOne };

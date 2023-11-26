@@ -4,6 +4,7 @@ const continentSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      required: true,
     },
     country: [{ name: String, capital: String }],
   },

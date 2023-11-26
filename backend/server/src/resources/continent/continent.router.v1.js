@@ -14,8 +14,9 @@ const getContinentData = async (req, res) => {
   }
 };
 
-const getAllContinent = (req, res) => {
-  res.status(200).json({ message: `GET all continent data` });
+const getAllContinent = async (req, res) => {
+  const result = await Continent.find();
+  res.status(200).json(result);
 };
 
 const addContinent = async (req, res) => {
