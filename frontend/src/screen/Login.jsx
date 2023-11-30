@@ -1,23 +1,36 @@
 import { faEarthAmerica } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Input } from "antd";
+import { Input, Card } from "antd";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../store/user.slice";
+import { useEffect } from "react";
 
 const Login = () => {
+  const name = useSelector((state) => state.user.value);
+  console.log("🚀 ~ file: login.jsx:12 ~ Login ~ name:", name);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const SelectGame = () => {
+  const SelectGame = (e) => {
+    dispatch(setUser(e.target.value));
     navigate(`/Select`, { replace: false });
   };
 
   return (
     <div>
-      <FontAwesomeIcon icon={faEarthAmerica} />
-      <Input
-        addonBefore="Nombre"
-        maxLength={15}
-        onPressEnter={SelectGame}
-      />
+      <Card
+        title={<FontAwesomeIcon icon={faEarthAmerica} />}
+        // bordered={true}
+      >
+        <Input
+          addonBefore="Nombre"
+          maxLength={15}
+          onPressEnter={SelectGame}
+        />
+      </Card>
     </div>
   );
 };
