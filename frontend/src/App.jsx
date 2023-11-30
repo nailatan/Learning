@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./screen/Login";
-import SelectCountry from "./screen/SelectCountry";
+import SelectContinent from "./screen/SelectContinent";
 import CountriesGamme from "./screen/CountriesGamme";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         />
         <Route
           path="/Select"
-          element={<SelectCountry />}
+          element={<SelectContinent />}
         />
         <Route
           path="/Play"

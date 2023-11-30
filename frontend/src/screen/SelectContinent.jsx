@@ -7,7 +7,7 @@ import { Select, Card, Button } from "antd";
 import { useEffect, useState } from "react";
 import { getContinents } from "../api";
 import { setCountry } from "../store/game.slice";
-const SelectCountry = () => {
+const SelectContinent = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const navigate = useNavigate();
@@ -60,4 +60,4 @@ const SelectCountry = () => {
   );
 };
 
-export default SelectCountry;
+export default SelectContinent;
