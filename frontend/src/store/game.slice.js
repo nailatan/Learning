@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const gameSlice = createSlice({
   name: "game",
   initialState: {
-    countryName: null,
+    continentName: null,
   },
   reducers: {
-    setCountry: (state, action) => {
-      state.countryName = action.payload;
+    setContinent: (state, action) => {
+      state.continentName = action.payload;
     },
   },
 });
 
-export const { setCountry } = gameSlice.actions;
+export const { setContinent } = gameSlice.actions;
 export default gameSlice.reducer;

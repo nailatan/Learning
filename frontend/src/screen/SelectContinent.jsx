@@ -5,32 +5,32 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import { Select, Card, Button } from "antd";
 import { useEffect, useState } from "react";
-import { getContinents } from "../api";
-import { setCountry } from "../store/game.slice";
+import { getContinents as apiGetContinents } from "../api";
+import { setContinent } from "../store/game.slice";
 const SelectContinent = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const navigate = useNavigate();
-  const [countries, setCountries] = useState([]);
+  const [continents, setContinents] = useState([]);
   const [canPlay, setCanPlay] = useState(false);
-  const [countrySelected, setCountrySelected] = useState(null);
+  const [continentSelected, setContinentSelected] = useState(null);
 
-  const getCountries = async () => {
-    const countries = await getContinents();
-    setCountries(countries);
+  const getContinents = async () => {
+    const continents1 = await apiGetContinents();
+    setContinents(continents1);
   };
 
   useEffect(() => {
-    getCountries();
+    getContinents();
   }, []);
 
   const activePlay = (e) => {
-    setCountrySelected(e);
+    setContinentSelected(e);
     setCanPlay(true);
   };
 
   const letsPlay = () => {
-    dispatch(setCountry(countrySelected));
+    dispatch(setContinent(continentSelected));
     navigate(`/Play`, { replace: false });
   };
   return (
@@ -52,7 +52,7 @@ const SelectContinent = () => {
         <Select
           // title="País"
           style={{ width: 120 }}
-          options={countries}
+          options={continents}
           onChange={activePlay}
         />
       </Card>
