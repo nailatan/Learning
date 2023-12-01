@@ -10,13 +10,14 @@ export const getContinents = async () => {
     return {
       value: country.name,
       label: country.name,
+      answer: "",
     };
   });
   return values;
 };
 
 export const getCountries = async (country) => {
-  console.log(country);
+
   const response = await fetch(
     `http://localhost:8080/api/v1/continent/${country}`,
     {

@@ -8,7 +8,7 @@ const update = async (name, country) => {
   return await Continent.findOneAndUpdate({ name }, { country }, { new: true });
 };
 
-const find = async (continent) => {
+const find = async () => {
   const continentDb = await Continent.find().exec();
   return continentDb;
 };

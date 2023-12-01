@@ -1,0 +1,17 @@
+.countryGame {
+    border:  1px solid black;
+    display: flex;
+    flex-direction: column;
+    /* display: flex;
+    flex-direction: column;
+    top:0;
+    background-color: aqua;   */
+}
+.country {
+    display: flex;
+    flex-direction: row;
+}
+
+.countryData {
+    margin: 1rem;
+}

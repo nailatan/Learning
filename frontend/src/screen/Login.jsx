@@ -9,7 +9,6 @@ import { useEffect } from "react";
 
 const Login = () => {
   const name = useSelector((state) => state.user.value);
-  console.log("🚀 ~ file: login.jsx:12 ~ Login ~ name:", name);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
