@@ -1,0 +1,1 @@
+docker cp insert.js learning_db-mongo-1:/insert.js

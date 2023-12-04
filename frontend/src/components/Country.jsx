@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Input } from "antd";
+import { Input, Form } from "antd";
 import { setAnswerFor } from "../store/game.slice";
 
 const Country = ({ name, _id }) => {
@@ -15,11 +15,12 @@ const Country = ({ name, _id }) => {
       key={_id}
       className="countryData"
     >
-      <Input
-        addonBefore={name}
-        maxLength={50}
-        onBlur={saveAnswer}
-      />
+      <Form.Item label={<span className="label">{name}</span>}>
+        <Input
+          maxLength={50}
+          onBlur={saveAnswer}
+        />
+      </Form.Item>
     </div>
   );
 };

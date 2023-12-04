@@ -2,16 +2,20 @@
     border:  1px solid black;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     /* display: flex;
     flex-direction: column;
     top:0;
     background-color: aqua;   */
 }
 .country {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .countryData {
-    margin: 1rem;
+    margin: 0rem;
+}
+.label {
+    width: 10rem;
 }

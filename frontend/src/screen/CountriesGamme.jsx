@@ -4,6 +4,7 @@ import { getCountries as apiGetCountries, getContinents } from "../api";
 import { setCountries } from "../store/game.slice";
 import Country from "../components/Country";
 import "./CountriesGames.css";
+import { Button } from "antd";
 
 const CountriesGamme = () => {
   const dispatch = useDispatch();
@@ -13,17 +14,39 @@ const CountriesGamme = () => {
 
   const [totalAnswer, setTotalAnswer] = useState(0);
 
+  const generateRandomBetween = (min, max, exclude) => {
+    let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (exclude.includes(ranNum)) {
+      ranNum = generateRandomBetween(min, max, exclude);
+    }
+
+    return ranNum;
+  };
+
   const getCountries = async () => {
     const countries1 = await apiGetCountries(continent);
-    dispatch(setCountries(countries1));
+
+    let min = 0;
+    let max = countries1.length - 1;
+    let excluded = [];
+    let mixedCountries = [];
+    let total = 0;
+    for (total = 0; total <= max; total++) {
+      let current = generateRandomBetween(min, max, excluded);
+      excluded.push(current);
+      mixedCountries.push(countries1[current]);
+    }
+    dispatch(setCountries(mixedCountries));
   };
+
+  const correct = () => {};
 
   useEffect(() => {
     getCountries();
   }, []);
 
   useEffect(() => {
-    console.log(`Use effect ${totalAnswer}`);
     setTotalAnswer(
       countries.reduce((total, x) => (x.answer ? total + 1 : total), 0)
     );
@@ -43,7 +66,9 @@ const CountriesGamme = () => {
           />
         ))}
       </div>
-      <div className="buttons"></div>
+      <div className="buttons">
+        <Button onClick={correct}>Corregir</Button>
+      </div>
     </div>
   );
 };
