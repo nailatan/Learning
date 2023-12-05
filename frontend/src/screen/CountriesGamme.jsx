@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCountries as apiGetCountries, getContinents } from "../api";
-import { setCountries } from "../store/game.slice";
+import { setCountries } from "../store/countryGame.slice";
 import Country from "../components/Country";
 import "./CountriesGames.css";
 import { Button } from "antd";
@@ -9,8 +9,8 @@ import { Button } from "antd";
 const CountriesGamme = () => {
   const dispatch = useDispatch();
   const name = useSelector((state) => state.user.value);
-  const continent = useSelector((state) => state.game.continentName);
-  const countries = useSelector((state) => state.game.countries);
+  const continent = useSelector((state) => state.countriesGame.continentName);
+  const countries = useSelector((state) => state.countriesGame.countries);
 
   const [totalAnswer, setTotalAnswer] = useState(0);
 

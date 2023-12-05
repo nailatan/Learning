@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const gameSlice = createSlice({
-  name: "game",
+export const gameCountriesSlice = createSlice({
+  name: "countriesGame",
   initialState: {
     continentName: null,
     countries: [],
@@ -26,5 +26,6 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setContinent, setCountries, setAnswerFor } = gameSlice.actions;
-export default gameSlice.reducer;
+export const { setContinent, setCountries, setAnswerFor } =
+  gameCountriesSlice.actions;
+export default gameCountriesSlice.reducer;

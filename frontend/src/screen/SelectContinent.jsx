@@ -6,7 +6,7 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { Select, Card, Button } from "antd";
 import { useEffect, useState } from "react";
 import { getContinents as apiGetContinents } from "../api";
-import { setContinent } from "../store/game.slice";
+import { setContinent } from "../store/countryGame.slice";
 const SelectContinent = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
