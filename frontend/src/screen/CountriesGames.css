@@ -1,5 +1,5 @@
 .countryGame {
-    border:  1px solid black;
+    /* border:  1px solid black; */
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -10,12 +10,33 @@
 }
 .country {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* border: 1px solid red; */
+    grid-template-columns: 1fr 1fr
 }
 
 .countryData {
-    margin: 0rem;
+    /* border: 1px solid blue; */
+    margin: 5px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    
+}
+.line {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: start;
+}
+.ok {
+    border: 1px solid green;
+}
+.ko {
+    border: 1px solid red;
 }
 .label {
     width: 10rem;
+}
+.answer  {
+    margin-left: 5px;
 }

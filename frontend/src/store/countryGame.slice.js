@@ -1,12 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const PHASE_GAMMES = {
+  PLAY: "Play",
+  CORRECTION: "Correct",
+};
+export const MODES = {
+  ASK_CAPITALS: "Capitals",
+  ASK_COUNTRIES: "Countries",
+};
 export const gameCountriesSlice = createSlice({
   name: "countriesGame",
   initialState: {
     continentName: null,
     countries: [],
+    mode: PHASE_GAMMES.ASK_CAPITALS,
+    phase: PHASE_GAMMES.PLAY,
   },
   reducers: {
+    setMode: (state, action) => {
+      state.mode = action.payload;
+    },
+    setPhase: (state, action) => {
+      state.phase = action.payload;
+    },
     setContinent: (state, action) => {
       state.continentName = action.payload;
     },
@@ -26,6 +42,6 @@ export const gameCountriesSlice = createSlice({
   },
 });
 
-export const { setContinent, setCountries, setAnswerFor } =
+export const { setContinent, setCountries, setAnswerFor, setMode, setPhase } =
   gameCountriesSlice.actions;
 export default gameCountriesSlice.reducer;

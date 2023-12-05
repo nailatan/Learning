@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCountries as apiGetCountries, getContinents } from "../api";
-import { setCountries } from "../store/countryGame.slice";
+import { setCountries, setPhase } from "../store/countryGame.slice";
 import Country from "../components/Country";
 import "./CountriesGames.css";
 import { Button } from "antd";
@@ -40,7 +40,14 @@ const CountriesGamme = () => {
     dispatch(setCountries(mixedCountries));
   };
 
-  const correct = () => {};
+  const correct = () => {
+    let correctCountries = countries.map((c) => ({
+      ...c,
+      isCorrect: c.answer === c.capital,
+    }));
+    dispatch(setCountries(correctCountries));
+    dispatch(setPhase("Correct"));
+  };
 
   useEffect(() => {
     getCountries();
@@ -63,6 +70,8 @@ const CountriesGamme = () => {
           <Country
             _id={c._id}
             name={c.name}
+            capital={c.capital}
+            isCorrect={c.isCorrect}
           />
         ))}
       </div>
