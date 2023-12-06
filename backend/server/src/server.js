@@ -17,6 +17,7 @@ app.get("/", function (req, res) {
 });
 
 require("./resources/continent/continent.controller").addRulesTo(app);
+require("./resources/irregularVerbs/irregularVerbs.controller").addRulesTo(app);
 
 app.use(errorHandler);
 
