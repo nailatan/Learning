@@ -33,15 +33,26 @@ export const gameCountriesSlice = createSlice({
       let countries = state.countries.map((country) => {
         if (country._id === action.payload._id) {
           return { ...country, answer: action.payload.value };
-        }        
+        }
         return { ...country };
       });
-
       state.countries = countries;
+    },
+    reset: (state) => {
+      state.countries = [];
+      state.continentName = "";
+      state.mode = PHASE_GAMMES.ASK_CAPITALS;
+      state.phase = PHASE_GAMMES.PLAY;
     },
   },
 });
 
-export const { setContinent, setCountries, setAnswerFor, setMode, setPhase } =
-  gameCountriesSlice.actions;
+export const {
+  setContinent,
+  setCountries,
+  setAnswerFor,
+  setMode,
+  setPhase,
+  reset,
+} = gameCountriesSlice.actions;
 export default gameCountriesSlice.reducer;

@@ -13,27 +13,32 @@ const Country = ({ name, _id, isCorrect, capital }) => {
     dispatch(setAnswerFor({ _id, value: e.target.value }));
   };
 
-  const classCorrection = showCorrection ? (isCorrect ? "ok" : "ko") : "";
+const classCorrection = showCorrection ? (isCorrect ? "ok" : "ko") : "";
+console.log(
+  "🚀 ~ file: Country.jsx:17 ~ Country ~ classCorrection:",
+  classCorrection
+);
 
-  return (
-    <div
-      key={_id}
-      className="countryData"
-    >
-      <div className="line">
-        <Form.Item label={<span className="label">{name}</span>}>
-          <Input
-            maxLength={50}
-            onBlur={saveAnswer}
-            className={classCorrection}
-          />
-        </Form.Item>
-        <div className="answer">
-          {showCorrection && !isCorrect ? capital : ""}
-        </div>
+return (
+  <div
+    key={_id}
+    className="countryData"
+  >
+    <div className="line">
+      <Form.Item label={<span className="label">{name}</span>}>
+        <Input
+          maxLength={50}
+          onBlur={saveAnswer}
+          className={classCorrection}
+          readOnly={showCorrection}
+        />
+      </Form.Item>
+      <div className="answer">
+        {showCorrection && !isCorrect ? capital : ""}
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Country;

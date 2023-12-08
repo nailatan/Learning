@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCountries as apiGetCountries, getContinents } from "../api";
-import { setCountries, setPhase } from "../store/countryGame.slice";
+import { setCountries, setPhase, reset } from "../store/countryGame.slice";
 import Country from "../components/Country";
 import "./CountriesGames.css";
 import { Button } from "antd";
 
 const CountriesGamme = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const name = useSelector((state) => state.user.value);
   const continent = useSelector((state) => state.countriesGame.continentName);
   const countries = useSelector((state) => state.countriesGame.countries);
 
   const [totalAnswer, setTotalAnswer] = useState(0);
+
+  const selectGame = () => {
+    dispatch(reset());
+
+    navigate(`/SelectGame`, { replace: false });
+  };
 
   const generateRandomBetween = (min, max, exclude) => {
     let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -45,6 +53,10 @@ const CountriesGamme = () => {
       ...c,
       isCorrect: c.answer === c.capital,
     }));
+    console.log(
+      "🚀 ~ file: CountriesGamme.jsx:58 ~ correctCountries ~ correctCountries:",
+      correctCountries
+    );
     dispatch(setCountries(correctCountries));
     dispatch(setPhase("Correct"));
   };
@@ -77,6 +89,7 @@ const CountriesGamme = () => {
       </div>
       <div className="buttons">
         <Button onClick={correct}>Corregir</Button>
+        <Button onClick={selectGame}>Seleccionar Juego</Button>
       </div>
     </div>
   );

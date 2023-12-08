@@ -1,22 +1,20 @@
 .verbGame {
-    border: 2px solid pink;
     height: 100%;
     width: 100%;
 }
 .verbsGrid {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     display: grid;
     grid-template-columns: 1fr;        
     text-align: center;
 }
 .verb {
-    border:  1px solid rebeccapurple;
+    /* border:  1px solid rebeccapurple; */
     margin: 2px;
 }
 .oneVerb {
     display: flex;
     flex-direction: row;
-    border: 1px solid green;    
 }
 .margin {
     margin: 10px
@@ -33,6 +31,12 @@
 }
 .title {
     font-weight: bold;
+    font-size: large;
+    margin-bottom: 5px;
+}
+.subTitle {
+    font-weight: bold;
+    font-size: medium;
 
 }
 .inputVerb {    

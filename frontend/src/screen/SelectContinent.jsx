@@ -35,7 +35,7 @@ const SelectContinent = () => {
     navigate(`/Play`, { replace: false });
   };
   return (
-    <div>
+    <div class="card">
       <div>{user}</div>
       <Card
         title="Selecciona el continente"

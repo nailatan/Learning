@@ -29,8 +29,13 @@ export const gameVerbsSlice = createSlice({
       });
       state.verbs = verbsGameModif;
     },
+    reset: (state) => {
+      state.verbs = [];
+      state.phase = PHASE_GAMMES.PLAY;
+    },
   },
 });
 
-export const { setVerbs, setAnswerFor, setPhase } = gameVerbsSlice.actions;
+export const { setVerbs, setAnswerFor, setPhase, reset } =
+  gameVerbsSlice.actions;
 export default gameVerbsSlice.reducer;

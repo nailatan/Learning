@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import { getVerbs as apiGetVerbs } from "../api";
-import { setVerbs, setPhase } from "../store/verbsGame.slice";
+import { setVerbs, setPhase, reset } from "../store/verbsGame.slice";
 
 import "./verbsGame.css";
 
@@ -11,9 +13,15 @@ import { TENSE_VERBS } from "../constants";
 
 const VerbsGame = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const name = useSelector((state) => state.user.value);
   const verbs = useSelector((state) => state.verbsGame.verbs);
   const phase = useSelector((state) => state.verbsGame.phase);
+
+  const selectGame = () => {
+    dispatch(reset());
+    navigate(`/SelectGame`, { replace: false });
+  };
 
   const generateRandomBetween = (min, max, exclude) => {
     let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -98,9 +106,9 @@ const VerbsGame = () => {
 
       <div className="tableVerbs">
         <div className="tableOneVerb">
-          <div className="inputVerb title">Present</div>
-          <div className="inputVerb title">Past</div>
-          <div className="inputVerb title">Meaning</div>
+          <div className="inputVerb subTitle">Present</div>
+          <div className="inputVerb subTitle">Past</div>
+          <div className="inputVerb subTitle">Meaning</div>
         </div>
         {verbs.map((v) => (
           <Verb
@@ -115,6 +123,7 @@ const VerbsGame = () => {
       </div>
       <div className="buttons">
         <Button onClick={correct}>Corregir</Button>
+        <Button onClick={selectGame}>Seleccionar Juego</Button>
       </div>
     </div>
   );

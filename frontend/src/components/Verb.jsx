@@ -14,17 +14,17 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
     ? isCorrect.present
       ? "inputVerb ok"
       : "inputVerb ko"
-    : "";
+    : "inputVerb";
   const classCorrectionPast = showCorrection
     ? isCorrect.past
       ? "inputVerb ok"
       : "inputVerb ko"
-    : "";
+    : "inputVerb";
   const classCorrectionMeaning = showCorrection
     ? isCorrect.meaning
       ? "inputVerb ok"
       : "inputVerb ko"
-    : "";
+    : "inputVerb";
 
   const updateAnswer = (e, tenseAnswer) => {
     let answerModif = { ...answer };
@@ -50,7 +50,7 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
           type="text"
           // className="inputVerb"
           className={classCorrectionPresent}
-          disabled={showCorrection}
+          readOnly={showCorrection}
           onBlur={(e) => updateAnswer(e, TENSE_VERBS.PRESENT)}
         ></input>
       ) : (
@@ -69,7 +69,7 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
           type="text"
           // className="inputVerb"
           className={classCorrectionPast}
-          disabled={showCorrection}
+          readOnly={showCorrection}
           onBlur={(e) => updateAnswer(e, TENSE_VERBS.PAST)}
         ></input>
       ) : (
@@ -85,7 +85,7 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
           type="text"
           // className="inputVerb"
           className={classCorrectionMeaning}
-          disabled={showCorrection}
+          readOnly={showCorrection}
           onBlur={(e) => updateAnswer(e, TENSE_VERBS.MEANING)}
         ></input>
       ) : (

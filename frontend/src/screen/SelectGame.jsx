@@ -37,7 +37,7 @@ const SelectGame = () => {
   };
 
   return (
-    <div>
+    <div class="card">
       <div>{user}</div>
       <Card
         title="Selecciona el juego"
