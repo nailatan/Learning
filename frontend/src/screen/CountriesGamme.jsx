@@ -49,14 +49,16 @@ const CountriesGamme = () => {
   };
 
   const correct = () => {
-    let correctCountries = countries.map((c) => ({
-      ...c,
-      isCorrect: c.answer === c.capital,
-    }));
-    console.log(
-      "🚀 ~ file: CountriesGamme.jsx:58 ~ correctCountries ~ correctCountries:",
-      correctCountries
-    );
+
+    let correctCountries = countries.map((c) => {
+      console.log(c);
+      return {
+        ...c,
+        isCorrect:
+          c.hasOwnProperty("answer") &&
+          c.answer.toUpperCase() === c.capital.toUpperCase(),
+      };
+    });
     dispatch(setCountries(correctCountries));
     dispatch(setPhase("Correct"));
   };
