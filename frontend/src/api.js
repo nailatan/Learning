@@ -31,3 +31,16 @@ export const getCountries = async (country) => {
 
   return json.country;
 };
+
+export const getVerbs = async (country) => {
+  const response = await fetch(`http://localhost:8080/api/v1/verbs`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const json = await response.json();
+
+  return json;
+};
+

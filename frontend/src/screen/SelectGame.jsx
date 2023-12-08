@@ -1,44 +1,46 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-
 import { Select, Card, Button } from "antd";
-import { useEffect, useState } from "react";
-import { getContinents as apiGetContinents } from "../api";
-import { setContinent } from "../store/countryGame.slice";
+import { GAMES } from "../constants";
+import { setMode } from "../store/managerGame.slice";
+import { MODE_GAMES } from "../constants";
 
-const SelectContinent = () => {
+const SelectGame = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const navigate = useNavigate();
-  const [continents, setContinents] = useState([]);
   const [canPlay, setCanPlay] = useState(false);
-  const [continentSelected, setContinentSelected] = useState(null);
+  const [selectedGame, setSelectedGame] = useState(null);
 
-  const getContinents = async () => {
-    const continents1 = await apiGetContinents();
-    setContinents(continents1);
-  };
-
-  useEffect(() => {
-    getContinents();
-  }, []);
+  const games = [
+    { name: "Países", value: GAMES.COUNTRY },
+    { name: "Verbos", value: GAMES.VERB },
+  ];
 
   const activePlay = (e) => {
-    setContinentSelected(e);
+    // setContinentSelected(e);
     setCanPlay(true);
+    setSelectedGame(e);
   };
 
   const letsPlay = () => {
-    dispatch(setContinent(continentSelected));
-    navigate(`/Play`, { replace: false });
+    if (selectedGame === GAMES.COUNTRY) {
+      dispatch(setMode(MODE_GAMES.GAME_COUNTRY));
+      navigate(`/Select`, { replace: false });
+    } else if (selectedGame === GAMES.VERB) {
+      dispatch(setMode(MODE_GAMES.GAME_VERBS));
+      navigate(`/Verbs`, { replace: false });
+    }
   };
+
   return (
     <div>
       <div>{user}</div>
       <Card
-        title="Selecciona el continente"
+        title="Selecciona el juego"
         // bordered={true}
         actions={[
           <Button
@@ -53,7 +55,7 @@ const SelectContinent = () => {
         <Select
           // title="País"
           style={{ width: 120 }}
-          options={continents}
+          options={games}
           onChange={activePlay}
         />
       </Card>
@@ -61,4 +63,4 @@ const SelectContinent = () => {
   );
 };
 
-export default SelectContinent;
+export default SelectGame;

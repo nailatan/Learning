@@ -33,7 +33,7 @@ export const gameCountriesSlice = createSlice({
       let countries = state.countries.map((country) => {
         if (country._id === action.payload._id) {
           return { ...country, answer: action.payload.value };
-        }
+        }        
         return { ...country };
       });
 

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/user.slice";
 import { useEffect } from "react";
+import { setMode } from "../store/managerGame.slice";
+import { MODE_GAMES } from "../constants";
 
 const Login = () => {
   const name = useSelector((state) => state.user.value);
@@ -13,9 +15,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  dispatch(setMode(MODE_GAMES.LOGIN));
   const SelectGame = (e) => {
     dispatch(setUser(e.target.value));
-    navigate(`/Select`, { replace: false });
+    dispatch(setMode(MODE_GAMES.SELECT_GAME));
+    navigate(`/SelectGame`, { replace: false });
   };
 
   return (
