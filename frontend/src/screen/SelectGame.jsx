@@ -10,6 +10,8 @@ import { MODE_GAMES } from "../constants";
 
 const SelectGame = () => {
   const dispatch = useDispatch();
+  const [message, setMessage] = useState("");
+
   const user = useSelector((state) => state.user.value);
   const navigate = useNavigate();
   const [canPlay, setCanPlay] = useState(false);
@@ -38,7 +40,7 @@ const SelectGame = () => {
 
   return (
     <div class="card">
-      <div>{user}</div>
+      <div className="error">{message}</div>
       <Card
         title="Selecciona el juego"
         // bordered={true}

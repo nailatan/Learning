@@ -13,6 +13,7 @@ const CountriesGamme = () => {
   const name = useSelector((state) => state.user.value);
   const continent = useSelector((state) => state.countriesGame.continentName);
   const countries = useSelector((state) => state.countriesGame.countries);
+  const [message, setMessage] = useState("");
 
   const [totalAnswer, setTotalAnswer] = useState(0);
 
@@ -33,23 +34,31 @@ const CountriesGamme = () => {
   };
 
   const getCountries = async () => {
-    const countries1 = await apiGetCountries(continent);
-
-    let min = 0;
-    let max = countries1.length - 1;
-    let excluded = [];
-    let mixedCountries = [];
-    let total = 0;
-    for (total = 0; total <= max; total++) {
-      let current = generateRandomBetween(min, max, excluded);
-      excluded.push(current);
-      mixedCountries.push(countries1[current]);
+    const {
+      success,
+      result: continentResult,
+      error,
+    } = await apiGetCountries(continent);
+    if (success) {
+      setMessage("");
+      let countries1 = continentResult.country;
+      let min = 0;
+      let max = countries1.length - 1;
+      let excluded = [];
+      let mixedCountries = [];
+      let total = 0;
+      for (total = 0; total <= max; total++) {
+        let current = generateRandomBetween(min, max, excluded);
+        excluded.push(current);
+        mixedCountries.push(countries1[current]);
+      }
+      dispatch(setCountries(mixedCountries));
+    } else {
+      setMessage(error);
     }
-    dispatch(setCountries(mixedCountries));
   };
 
   const correct = () => {
-
     let correctCountries = countries.map((c) => {
       console.log(c);
       return {
@@ -75,6 +84,7 @@ const CountriesGamme = () => {
 
   return (
     <div className="countryGame">
+      <div className="error">{message}</div>
       <div className="title">
         Paises de {continent} ({totalAnswer}/
         {countries != null ? countries.length : 0})

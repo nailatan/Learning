@@ -44,7 +44,10 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
     setAnswer(answerModif);
   };
   return (
-    <div className="tableOneVerb">
+    <div
+      className="tableOneVerb"
+      key={_id}
+    >
       {tenseShowed != TENSE_VERBS.PRESENT ? (
         <input
           type="text"

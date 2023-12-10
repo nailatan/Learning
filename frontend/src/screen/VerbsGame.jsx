@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -17,6 +17,7 @@ const VerbsGame = () => {
   const name = useSelector((state) => state.user.value);
   const verbs = useSelector((state) => state.verbsGame.verbs);
   const phase = useSelector((state) => state.verbsGame.phase);
+  const [message, setMessage] = useState("");
 
   const selectGame = () => {
     dispatch(reset());
@@ -36,21 +37,29 @@ const VerbsGame = () => {
   const tenseMap = [TENSE_VERBS.PRESENT, TENSE_VERBS.PAST, TENSE_VERBS.MEANING];
 
   const getVerbs = async () => {
-    const verbs1 = await apiGetVerbs();
+    const { success, result: verbs1, error } = await apiGetVerbs();
 
-    let min = 0;
-    let max = verbs1.length - 1;
-    let excluded = [];
-    let mixedVerbs = [];
+    if (success) {
+      setMessage("");
+      let min = 0;
+      let max = verbs1.length - 1;
+      let excluded = [];
+      let mixedVerbs = [];
 
-    for (let total = 0; total <= max; total++) {
-      let current = generateRandomBetween(min, max, excluded);
-      let tenseShowed = generateRandomBetween(0, 2, []);
-      excluded.push(current);
-      let modified = { ...verbs1[current], tenseShowed: tenseMap[tenseShowed] };
-      mixedVerbs.push(modified);
+      for (let total = 0; total <= max; total++) {
+        let current = generateRandomBetween(min, max, excluded);
+        let tenseShowed = generateRandomBetween(0, 2, []);
+        excluded.push(current);
+        let modified = {
+          ...verbs1[current],
+          tenseShowed: tenseMap[tenseShowed],
+        };
+        mixedVerbs.push(modified);
+      }
+      dispatch(setVerbs(mixedVerbs));
+    } else {
+      setMessage(error);
     }
-    dispatch(setVerbs(mixedVerbs));
   };
 
   const correct = () => {
@@ -102,8 +111,8 @@ const VerbsGame = () => {
 
   return (
     <div className="verbGame">
+      <div className="error">{message}</div>
       <div className="title">Verbs</div>
-
       <div className="tableVerbs">
         <div className="tableOneVerb">
           <div className="inputVerb subTitle">Present</div>
