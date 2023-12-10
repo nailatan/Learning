@@ -131,7 +131,6 @@ const VerbsGame = () => {
         <Button
           onClick={selectGame}
           style={{
-            // padding: "10px",
             marginLeft: "10px",
           }}
         >
