@@ -1,1 +1,2 @@
-docker cp insert.js learning_db-mongo-1:/insert.js
+docker cp insert.js learning_db-mongo-1:/insert-countries.js
+docker cp insert.js learning_db-mongo-1:/insert-verbs.js

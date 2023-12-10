@@ -122,8 +122,21 @@ const VerbsGame = () => {
         ))}
       </div>
       <div className="buttons">
-        <Button onClick={correct}>Corregir</Button>
-        <Button onClick={selectGame}>Seleccionar Juego</Button>
+        <Button
+          onClick={correct}
+          style={{ marginLeft: "10px" }}
+        >
+          Corregir
+        </Button>
+        <Button
+          onClick={selectGame}
+          style={{
+            // padding: "10px",
+            marginLeft: "10px",
+          }}
+        >
+          Seleccionar Juego
+        </Button>
       </div>
     </div>
   );
