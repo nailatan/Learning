@@ -127,9 +127,9 @@ const VerbsGame = () => {
         <div className="header">
           <div>
             <InputNumber
-              min={1}
-              max={101}
-              defaultValue={1}
+              min={MIN_VERBS}
+              max={MAX_VERBS}
+              defaultValue={MAX_VERBS}
               onChange={changeNumberVerbs}
             ></InputNumber>
             <Button
