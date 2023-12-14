@@ -7,9 +7,13 @@ import { setVerbs, setPhase, reset } from "../store/verbsGame.slice";
 
 import "./verbsGame.css";
 
-import { Input, Form, Button } from "antd";
+import { Input, Form, Button, InputNumber } from "antd";
 import Verb from "../components/verb";
 import { TENSE_VERBS } from "../constants";
+
+const MAX_VERBS = 101;
+const MIN_VERBS = 1;
+const tenseMap = [TENSE_VERBS.PRESENT, TENSE_VERBS.PAST, TENSE_VERBS.MEANING];
 
 const VerbsGame = () => {
   const dispatch = useDispatch();
@@ -17,6 +21,7 @@ const VerbsGame = () => {
   const name = useSelector((state) => state.user.value);
   const verbs = useSelector((state) => state.verbsGame.verbs);
   const phase = useSelector((state) => state.verbsGame.phase);
+  const [numVerbs, setNumVerbs] = useState(MAX_VERBS);
   const [message, setMessage] = useState("");
 
   const selectGame = () => {
@@ -34,7 +39,13 @@ const VerbsGame = () => {
     return ranNum;
   };
 
-  const tenseMap = [TENSE_VERBS.PRESENT, TENSE_VERBS.PAST, TENSE_VERBS.MEANING];
+  const changeNumberVerbs = (value) => {
+    setNumVerbs(value);
+  };
+
+  const play = async () => {
+    getVerbs();
+  };
 
   const getVerbs = async () => {
     const { success, result: verbs1, error } = await apiGetVerbs();
@@ -56,7 +67,7 @@ const VerbsGame = () => {
         };
         mixedVerbs.push(modified);
       }
-      dispatch(setVerbs(mixedVerbs));
+      dispatch(setVerbs(mixedVerbs.splice(0, numVerbs)));
     } else {
       setMessage(error);
     }
@@ -102,7 +113,7 @@ const VerbsGame = () => {
   };
 
   useEffect(() => {
-    getVerbs();
+    // getVerbs();
   }, []);
 
   // useEffect(() => {
@@ -110,41 +121,66 @@ const VerbsGame = () => {
   // }, [verbs]);
 
   return (
-    <div className="verbGame">
-      <div className="error">{message}</div>
-      <div className="title">Verbs</div>
-      <div className="tableVerbs">
-        <div className="tableOneVerb">
-          <div className="inputVerb subTitle">Present</div>
-          <div className="inputVerb subTitle">Past</div>
-          <div className="inputVerb subTitle">Meaning</div>
+    <div>
+      <div className="verbGameHeader">
+        {/* <div className="title">Verbs</div> */}
+        <div className="header">
+          <div>
+            <InputNumber
+              min={1}
+              max={101}
+              defaultValue={1}
+              onChange={changeNumberVerbs}
+            ></InputNumber>
+            <Button
+              onClick={play}
+              style={{ marginLeft: "10px" }}
+            >
+              Play
+            </Button>
+
+            <Button
+              onClick={correct}
+              style={{ marginLeft: "10px" }}
+            >
+              Corregir
+            </Button>
+            <Button
+              onClick={selectGame}
+              style={{
+                marginLeft: "10px",
+              }}
+            >
+              Seleccionar Juego
+            </Button>
+          </div>
         </div>
-        {verbs.map((v) => (
-          <Verb
-            _id={v._id}
-            present={v.present}
-            past={v.past}
-            meaning={v.meaning}
-            tenseShowed={v.tenseShowed}
-            isCorrect={v.isCorrect}
-          ></Verb>
-        ))}
+        <div class="verGame fixed">
+          <div className="verbGame">
+            <div className="error">{message}</div>
+            <div className="tableVerbs">
+              <div className="tableOneVerb fixed">
+                <div className="inputVerb subTitle">Present</div>
+                <div className="inputVerb subTitle">Past</div>
+                <div className="inputVerb subTitle">Meaning</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="buttons">
-        <Button
-          onClick={correct}
-          style={{ marginLeft: "10px" }}
-        >
-          Corregir
-        </Button>
-        <Button
-          onClick={selectGame}
-          style={{
-            marginLeft: "10px",
-          }}
-        >
-          Seleccionar Juego
-        </Button>
+      <div className="verbGame">
+        <div className="tableVerbs">
+          {verbs.map((v) => (
+            <Verb
+              _id={v._id}
+              present={v.present}
+              past={v.past}
+              meaning={v.meaning}
+              tenseShowed={v.tenseShowed}
+              isCorrect={v.isCorrect}
+            ></Verb>
+          ))}
+        </div>
       </div>
     </div>
   );

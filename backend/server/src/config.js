@@ -8,6 +8,7 @@ const envVariablesName = [
   "DB_PORT",
   "DB_DATABASE",
   "SERVER_PORT",
+  "FRONTEND_STATIC",
 ];
 
 let envVariables = {};

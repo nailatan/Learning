@@ -1,3 +1,20 @@
+.verbGameHeader {
+    display: flex;
+    flex-direction: column;
+     position: sticky;
+     top:0;
+     margin: 0;
+     padding: 0;
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;   
+    height: 6rem;
+    background-color: white;
+   
+}
 .verbGame {
     height: 100%;
     width: 100%;
@@ -29,10 +46,15 @@
     justify-content: space-around;
     padding: 5px;
 }
+
+.fixed {
+    border-top: 1px solid black;
+    background-color: white;
+}
 .title {
     font-weight: bold;
-    font-size: large;
-    margin-bottom: 5px;
+    font-size: large;    
+    background-color: white;
 }
 .subTitle {
     font-weight: bold;
@@ -72,6 +94,9 @@
     margin-top: 20px;
 }
 
+.error {
+    background-color: red;    
+}
 /* input[type=button] {
     padding: 10px;
     background-color: aqua;

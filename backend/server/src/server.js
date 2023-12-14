@@ -12,7 +12,9 @@ app.use(cors());
 app.use(express.json());
 app.disable("x-powered-by");
 
-app.get("/", function (req, res) {
+app.use("/", express.static(config.FRONTEND_STATIC));
+
+app.get("/hello", function (req, res) {
   res.send("Hello World");
 });
 
