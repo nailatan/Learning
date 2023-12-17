@@ -10,7 +10,7 @@ services:
     volumes:
       - data:/data/db
   server:
-    image: learning/server
+    image: learning
     restart: always
     environment:
       DB_HOST: mongo

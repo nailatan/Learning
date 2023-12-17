@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TENSE_VERBS } from "../constants";
 
 export const PHASE_GAMMES = {
+  READY: "Ready",
   PLAY: "Play",
   CORRECTION: "Correct",
 };
@@ -10,7 +11,7 @@ export const gameVerbsSlice = createSlice({
   name: "verbsGame",
   initialState: {
     verbs: [],
-    phase: PHASE_GAMMES.PLAY,
+    phase: PHASE_GAMMES.READY,
   },
   reducers: {
     setPhase: (state, action) => {

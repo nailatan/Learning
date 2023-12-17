@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getVerbs as apiGetVerbs } from "../api";
-import { setVerbs, setPhase, reset } from "../store/verbsGame.slice";
+import {
+  setVerbs,
+  setPhase,
+  reset,
+  PHASE_GAMMES,
+} from "../store/verbsGame.slice";
 
 import "./verbsGame.css";
 
@@ -21,6 +26,7 @@ const VerbsGame = () => {
   const name = useSelector((state) => state.user.value);
   const verbs = useSelector((state) => state.verbsGame.verbs);
   const phase = useSelector((state) => state.verbsGame.phase);
+  console.log("🚀 ~ file: VerbsGame.jsx:24 ~ VerbsGame ~ phase:", phase);
   const [numVerbs, setNumVerbs] = useState(MAX_VERBS);
   const [message, setMessage] = useState("");
 
@@ -109,7 +115,7 @@ const VerbsGame = () => {
     });
 
     dispatch(setVerbs(correcteVerbs));
-    dispatch(setPhase("Correct"));
+    dispatch(setPhase(PHASE_GAMMES.CORRECTION));
   };
 
   useEffect(() => {
@@ -135,6 +141,7 @@ const VerbsGame = () => {
             <Button
               onClick={play}
               style={{ marginLeft: "10px" }}
+              className="button-12"
             >
               Play
             </Button>

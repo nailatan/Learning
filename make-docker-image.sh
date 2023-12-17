@@ -23,5 +23,5 @@ cd ..
  
 # Compilar frontend
 echo -n "Creando imagen Docker... "
-docker build -t learning/server --force-rm . 
+docker build -t learning --force-rm . 
 echo "ok"
