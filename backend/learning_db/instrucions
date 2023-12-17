@@ -3,3 +3,6 @@ docker cp insert.js learning_db-mongo-1:/insert-verbs.js
 docker cp insert.js learning-mongo-1:/insert-verbs.js
 docker exec -it learning-server-1  /bin/sh
 docker logs learning-server-1 -f
+
+
+docker build -t learning . --force-rm

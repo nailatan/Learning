@@ -13,7 +13,7 @@ import {
 import "./verbsGame.css";
 
 import { Input, Form, Button, InputNumber } from "antd";
-import Verb from "../components/verb";
+import Verb from "../components/Verb";
 import { TENSE_VERBS } from "../constants";
 
 const MAX_VERBS = 101;
