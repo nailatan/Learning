@@ -73,7 +73,9 @@ const VerbsGame = () => {
         };
         mixedVerbs.push(modified);
       }
+      dispatch(setPhase(PHASE_GAMMES.READY));
       dispatch(setVerbs(mixedVerbs.splice(0, numVerbs)));
+
     } else {
       setMessage(error);
     }

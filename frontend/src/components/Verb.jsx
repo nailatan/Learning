@@ -10,6 +10,10 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
   const [answer, setAnswer] = useState({ present: "", past: "", meaning: "" });
 
   const showCorrection = phase === PHASE_GAMMES.CORRECTION;
+  console.log(
+    "🚀 ~ file: Verb.jsx:13 ~ Verb ~ showCorrection:",
+    showCorrection
+  );
   const classCorrectionPresent = showCorrection
     ? isCorrect.present
       ? "inputVerb ok"
