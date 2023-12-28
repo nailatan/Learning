@@ -26,7 +26,7 @@ const VerbsGame = () => {
   const name = useSelector((state) => state.user.value);
   const verbs = useSelector((state) => state.verbsGame.verbs);
   const phase = useSelector((state) => state.verbsGame.phase);
-  console.log("🚀 ~ file: VerbsGame.jsx:24 ~ VerbsGame ~ phase:", phase);
+
   const [numVerbs, setNumVerbs] = useState(MAX_VERBS);
   const [message, setMessage] = useState("");
 
@@ -75,7 +75,6 @@ const VerbsGame = () => {
       }
       dispatch(setPhase(PHASE_GAMMES.READY));
       dispatch(setVerbs(mixedVerbs.splice(0, numVerbs)));
-
     } else {
       setMessage(error);
     }
@@ -127,7 +126,7 @@ const VerbsGame = () => {
   // useEffect(() => {
   //   console.log("USEEFECT VERBS");
   // }, [verbs]);
-
+  let i = 1;
   return (
     <div>
       <div className="verbGameHeader">
@@ -181,6 +180,7 @@ const VerbsGame = () => {
         <div className="tableVerbs">
           {verbs.map((v) => (
             <Verb
+              order={i++}
               _id={v._id}
               present={v.present}
               past={v.past}

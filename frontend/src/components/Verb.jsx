@@ -4,7 +4,15 @@ import { useEffect, useState } from "react";
 
 import { TENSE_VERBS } from "../constants";
 
-const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
+const Verb = ({
+  _id,
+  present,
+  past,
+  meaning,
+  tenseShowed,
+  isCorrect,
+  order,
+}) => {
   const dispatch = useDispatch();
   const phase = useSelector((state) => state.verbsGame.phase);
   const [answer, setAnswer] = useState({ present: "", past: "", meaning: "" });
@@ -52,6 +60,7 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
       className="tableOneVerb"
       key={_id}
     >
+      <div style={{ paddingRight: "10px" }}>{order}</div>
       {tenseShowed != TENSE_VERBS.PRESENT ? (
         <input
           type="text"
@@ -70,7 +79,6 @@ const Verb = ({ _id, present, past, meaning, tenseShowed, isCorrect }) => {
           ? present
           : ""}
       </div>
-
       {tenseShowed != TENSE_VERBS.PAST ? (
         <input
           type="text"
