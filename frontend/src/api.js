@@ -1,4 +1,4 @@
-const HOST = "localhost";
+const HOST = "127.0.0.1";
 const PORT = "8080";
 const BASE_URL = `http://${HOST}:${PORT}/api`;
 const VERSION = "v1";

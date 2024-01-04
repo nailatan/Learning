@@ -21,3 +21,12 @@ ENV NODE_ENV=Prodution
 ENV FRONTEND_STATIC=/frontend
 EXPOSE 8080
 CMD node .
+
+
+systemctl restart docker
+
+1)  git clone -b master https://github.com/nailatan/Learning.git learning
+2) En backend/server --> npm install 
+3) en frontend -> npm install
+4) En frontend --> npm run build
+5) docker build -t learning --force-rm .
